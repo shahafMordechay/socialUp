@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 
+import Scream from '../components/Scream';
+
 function getScreamsBody(screams) {
   return screams ? (
-    screams.map((scream) => <p>{scream.body}</p>)
+    screams.map((scream) => <Scream scream={scream} />)
   ) : (
     <p>Loading...</p>
   );
