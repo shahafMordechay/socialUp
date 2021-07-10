@@ -24,7 +24,7 @@ const {
   markNotificationsRead
 } = require('./handlers/users');
 
-const { fbCollections } = require('./util/myConstants');
+const { fbCollections } = require('./util/functionsConstants');
 
 // Scream routes
 app.get('/screams', getAllScreams);

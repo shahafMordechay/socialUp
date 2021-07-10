@@ -3,7 +3,7 @@ const {
   errorMessages,
   messages,
   fbCollections
-} = require('../util/myConstants');
+} = require('../util/functionsConstants');
 
 /*===========================================================================*/
 // Get all screams in db

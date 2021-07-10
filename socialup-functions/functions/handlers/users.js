@@ -15,7 +15,7 @@ const {
   errorMessages,
   messages,
   fbCollections
-} = require('../util/myConstants');
+} = require('../util/functionsConstants');
 
 /*===========================================================================*/
 // Create new user

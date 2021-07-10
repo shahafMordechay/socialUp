@@ -1,5 +1,5 @@
 const { admin, db } = require('./admin');
-const { errorMessages, fbCollections } = require('../util/myConstants');
+const { errorMessages, fbCollections } = require('../util/functionsConstants');
 
 const tokenPrefix = 'Bearer ';
 /*===========================================================================*/
