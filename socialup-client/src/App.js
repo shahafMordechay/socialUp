@@ -13,18 +13,12 @@ import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#068FB6',
-      contrastText: '#FFFFFF'
-    },
-    secondary: {
-      main: '#09AEE1',
-      contrastText: '#FFFFFF'
-    }
-  }
-});
+// style
+import defaultTheme from './util/theme';
+
+const theme = createMuiTheme(defaultTheme);
+
+const token = localStorage.FBIdToken;
 
 function App() {
   return (

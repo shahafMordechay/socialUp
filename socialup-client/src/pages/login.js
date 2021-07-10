@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import globalUseStyles from '../GlobalStyles';
+import globalUseStyles from '../util/GlobalStyles';
 import AppIcon from '../images/clogo_only_trans.png';
 
 function Login(props) {
