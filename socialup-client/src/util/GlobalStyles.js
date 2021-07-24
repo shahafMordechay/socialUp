@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const globalUseStyles = makeStyles((theme) => ({
+const globalUseStyles = makeStyles({
   typography: {
     useNextVariant: true
   },
@@ -36,6 +36,6 @@ const globalUseStyles = makeStyles((theme) => ({
   progress: {
     position: 'absolute'
   }
-}));
+});
 
 export default globalUseStyles;

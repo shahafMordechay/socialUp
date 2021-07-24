@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // MUI
 import Paper from '@material-ui/core/Paper';
@@ -12,14 +11,22 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+
 import globalUseStyles from '../util/GlobalStyles';
 import AppIcon from '../images/clogo_only_trans.png';
+import { loginUser } from '../redux/actions/userActions';
 
 function Login(props) {
   const classes = globalUseStyles();
 
-  const [loading, setLoading] = useState(false);
-  const [serverErrors, setServerErrors] = useState({});
+  const dispatch = useDispatch();
+  const { user, UI } = useSelector((state) => ({
+    user: state.user,
+    UI: state.UI
+  }));
+
   const {
     control,
     register,
@@ -34,26 +41,7 @@ function Login(props) {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    console.log('sub start');
-    setLoading(true);
-    axios
-      .post('./login', data)
-      .then((res) => {
-        console.log('sub success');
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-        setLoading(false);
-        history.push('/');
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setServerErrors({
-          general: {
-            type: 'server',
-            message: err.response.data.general
-          }
-        });
-        setLoading(false);
-      });
+    loginUser(data, history, dispatch);
   };
   return (
     <Container maxWidth="sm" className={classes.container}>
@@ -123,9 +111,9 @@ function Login(props) {
                 );
               }}
             />
-            {serverErrors && serverErrors.general && (
+            {UI.serverErrors && UI.serverErrors.general && (
               <Typography variant="body2" className={classes.customError}>
-                {serverErrors.general.message}
+                {UI.serverErrors.general}
               </Typography>
             )}
             <Button
@@ -134,10 +122,10 @@ function Login(props) {
               color="secondary"
               size="large"
               className={classes.button}
-              disabled={loading}
+              disabled={UI.loading}
             >
               Login
-              {loading && (
+              {UI.loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
@@ -151,5 +139,12 @@ function Login(props) {
     </Container>
   );
 }
+
+Login.propTypes = {
+  classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
+};
 
 export default Login;
