@@ -29,15 +29,7 @@ const styles = {
 function Scream(props) {
   const {
     classes,
-    scream: {
-      body,
-      createdAt,
-      userImage,
-      userHandle,
-      screamId,
-      likeCount,
-      commentCount
-    }
+    scream: { body, createdAt, userImage, userHandle }
   } = props;
   dayjs.extend(relativeTime);
   return (

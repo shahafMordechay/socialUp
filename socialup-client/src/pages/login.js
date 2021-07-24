@@ -22,10 +22,7 @@ function Login(props) {
   const classes = globalUseStyles();
 
   const dispatch = useDispatch();
-  const { user, UI } = useSelector((state) => ({
-    user: state.user,
-    UI: state.UI
-  }));
+  const UI = useSelector((state) => state.UI);
 
   const {
     control,

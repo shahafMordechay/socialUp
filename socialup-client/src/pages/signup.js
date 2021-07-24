@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useRef } from 'react';
 
 // MUI
 import Paper from '@material-ui/core/Paper';
@@ -12,18 +12,24 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+
 import globalUseStyles from '../util/GlobalStyles';
 import AppIcon from '../images/clogo_only_trans.png';
+import { signupUser } from '../redux/actions/userActions';
 
 function Signup(props) {
   const classes = globalUseStyles();
 
-  const [loading, setLoading] = useState(false);
-  const [serverErrors, setServerErrors] = useState({});
+  const dispatch = useDispatch();
+  const UI = useSelector((state) => state.UI);
+
   const {
     control,
     register,
     handleSubmit,
+    watch,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -33,29 +39,13 @@ function Signup(props) {
       confirmPassword: ''
     }
   });
+  const password = useRef({});
+  password.current = watch('password', '');
+
   const history = useHistory();
 
   const onSubmit = (data) => {
-    console.log('sub start');
-    setLoading(true);
-    axios
-      .post('./signup', data)
-      .then((res) => {
-        console.log('sub success');
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-        setLoading(false);
-        history.push('/');
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setServerErrors({
-          general: {
-            type: 'server',
-            message: err.response.data.general
-          }
-        });
-        setLoading(false);
-      });
+    signupUser(data, history, dispatch);
   };
   return (
     <Container maxWidth="sm" className={classes.container}>
@@ -181,15 +171,18 @@ function Signup(props) {
                       minLength: {
                         value: 6,
                         message: 'Password should be at-least 6 characters.'
-                      }
+                      },
+                      validate: (value) =>
+                        value === password.current ||
+                        'The passwords do not match'
                     })}
                   />
                 );
               }}
             />
-            {serverErrors && serverErrors.general && (
+            {UI.serverErrors && UI.serverErrors.confirmPassword && (
               <Typography variant="body2" className={classes.customError}>
-                {serverErrors.general.message}
+                {UI.serverErrors.confirmPassword}
               </Typography>
             )}
             <Button
@@ -198,10 +191,10 @@ function Signup(props) {
               color="secondary"
               size="large"
               className={classes.button}
-              disabled={loading}
+              disabled={UI.loading}
             >
               Signup
-              {loading && (
+              {UI.loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
@@ -215,5 +208,12 @@ function Signup(props) {
     </Container>
   );
 }
+
+Signup.propTypes = {
+  classes: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
+};
 
 export default Signup;
