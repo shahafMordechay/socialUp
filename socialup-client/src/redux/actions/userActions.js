@@ -4,7 +4,8 @@ import {
   SET_ERRORS,
   CLEAR_ERRORS,
   LOADING_UI,
-  SET_UNAUTHENTICATED
+  SET_UNAUTHENTICATED,
+  LOADING_USER
 } from '../types';
 
 const FB_ID_TOKEN = 'FBIdToken';
@@ -16,7 +17,7 @@ export const loginUser = (userData, history, dispatch) => {
     .post('./login', userData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      dispatch(getUserData());
+      getUserData(dispatch);
       dispatch({ type: CLEAR_ERRORS });
       history.push('/');
     })
@@ -40,19 +41,20 @@ export const signupUser = (newUserData, history, dispatch) => {
     .post('./signup', newUserData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      dispatch(getUserData());
+      getUserData(dispatch);
       dispatch({ type: CLEAR_ERRORS });
       history.push('/');
     })
     .catch((err) => {
       dispatch({
         type: SET_ERRORS,
-        payload: err.response.data
+        payload: err.data
       });
     });
 };
 
-export const getUserData = () => (dispatch) => {
+export const getUserData = (dispatch) => {
+  dispatch({ type: LOADING_USER });
   axios
     .get('/user')
     .then((res) => {

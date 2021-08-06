@@ -1,7 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // MUI
 import Paper from '@material-ui/core/Paper';
@@ -136,12 +135,5 @@ function Login(props) {
     </Container>
   );
 }
-
-Login.propTypes = {
-  classes: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
-};
 
 export default Login;
