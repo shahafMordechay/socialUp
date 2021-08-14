@@ -7,8 +7,6 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 
 // MUI Icons
 import LocationOn from '@material-ui/icons/LocationOn';
@@ -23,6 +21,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import globalUseStyles from '../util/GlobalStyles';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
 import EditDetails from './EditDetails';
+import TooltipButton from '../util/TooltipButton';
 
 export default function Profile() {
   const classes = globalUseStyles();
@@ -75,11 +74,14 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
             hidden="hidden"
             onChange={(event) => handleImageChange(event)}
           />
-          <Tooltip title="Edit profile picture" placement="top">
-            <IconButton onClick={handleEditPicture} className="button">
-              <EditIcon color="primary" />
-            </IconButton>
-          </Tooltip>
+          <TooltipButton
+            tip="Edit profile picture"
+            placement="top"
+            btnClassName="button"
+            onClick={handleEditPicture}
+          >
+            <EditIcon color="primary" />
+          </TooltipButton>
         </div>
         <hr />
         <div className="profile-details">
@@ -114,11 +116,9 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
           <CalendarToday color="primary" />{' '}
           <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
         </div>
-        <Tooltip title="Logout" placement="top">
-          <IconButton onClick={handleLogout}>
-            <KeyboardReturn color="primary" />
-          </IconButton>
-        </Tooltip>
+        <TooltipButton tip="Logout" placement="top" onClick={handleLogout}>
+          <KeyboardReturn color="primary" />
+        </TooltipButton>
         <EditDetails />
       </div>
     </Paper>

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 // MUI
-import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,7 +10,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 // MUI Icons
-import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 // Redux
@@ -19,6 +17,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
 import globalUseStyles from '../util/GlobalStyles';
 import { editUserDetails } from '../redux/actions/userActions';
+import TooltipButton from '../util/TooltipButton';
 
 export default function EditDetails() {
   const classes = globalUseStyles();
@@ -67,15 +66,15 @@ export default function EditDetails() {
 
   return (
     <Fragment>
-      <Tooltip title="Edit details" placement="top">
-        <IconButton
-          onClick={handleOpen}
-          className={classes.button}
-          style={buttonStyle}
-        >
-          <EditIcon color="primary" />
-        </IconButton>
-      </Tooltip>
+      <TooltipButton
+        tip="Edit details"
+        placement="top"
+        btnClassName={classes.button}
+        onClick={handleOpen}
+        style={buttonStyle}
+      >
+        <EditIcon color="primary" style={buttonStyle} />
+      </TooltipButton>
       <Dialog open={isOpen} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Edit your details</DialogTitle>
         <DialogContent>
