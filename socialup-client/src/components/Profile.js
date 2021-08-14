@@ -22,6 +22,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
 import globalUseStyles from '../util/GlobalStyles';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import EditDetails from './EditDetails';
 
 export default function Profile() {
   const classes = globalUseStyles();
@@ -86,7 +87,7 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
             component={Link}
             to={`/users/${handle}`}
             color="primary"
-            variant="h5"
+            variant="h6"
           >
             @{handle}
           </MuiLink>
@@ -107,6 +108,7 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
                 {' '}
                 {website}
               </a>
+              <hr />
             </>
           )}
           <CalendarToday color="primary" />{' '}
@@ -117,6 +119,7 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
             <KeyboardReturn color="primary" />
           </IconButton>
         </Tooltip>
+        <EditDetails />
       </div>
     </Paper>
   );

@@ -1,7 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useRef } from 'react';
 
 // MUI
@@ -208,12 +207,5 @@ function Signup(props) {
     </Container>
   );
 }
-
-Signup.propTypes = {
-  classes: PropTypes.object.isRequired,
-  signupUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
-};
 
 export default Signup;
