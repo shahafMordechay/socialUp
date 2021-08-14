@@ -50,8 +50,16 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
     credentials: { handle, createdAt, imageUrl, bio, website, location }
   } = user;
 
-  const handleEditPicture = (imageInput) => {
+  const handleEditPicture = () => {
     imageInput.current && imageInput.current.click();
+  };
+
+  const handleImageChange = (event) => {
+    handleImageUpload(event, dispatch);
+  };
+
+  const handleLogout = () => {
+    handleUserLogout(dispatch);
   };
 
   return (
@@ -64,13 +72,10 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
             id="imageInput"
             ref={imageInput}
             hidden="hidden"
-            onChange={(event) => handleImageChange(event, dispatch)}
+            onChange={(event) => handleImageChange(event)}
           />
           <Tooltip title="Edit profile picture" placement="top">
-            <IconButton
-              onClick={handleEditPicture(imageInput)}
-              className="button"
-            >
+            <IconButton onClick={handleEditPicture} className="button">
               <EditIcon color="primary" />
             </IconButton>
           </Tooltip>
@@ -108,7 +113,7 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
           <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
         </div>
         <Tooltip title="Logout" placement="top">
-          <IconButton onClick={() => handleLogout(dispatch)}>
+          <IconButton onClick={handleLogout}>
             <KeyboardReturn color="primary" />
           </IconButton>
         </Tooltip>
@@ -145,13 +150,13 @@ const noProfile = (classes) => {
   );
 };
 
-const handleImageChange = (event, dispatch) => {
+const handleImageUpload = (event, dispatch) => {
   const image = event.target.files[0];
   const formData = new FormData();
   formData.append('image', image, image.name);
   uploadImage(formData, dispatch);
 };
 
-const handleLogout = (dispatch) => {
+const handleUserLogout = (dispatch) => {
   logoutUser(dispatch);
 };
