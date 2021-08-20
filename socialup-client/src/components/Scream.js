@@ -15,8 +15,8 @@ import { makeStyles } from '@material-ui/core';
 import ChatIcon from '@material-ui/icons/Chat';
 
 import { likeScream, unlikeScream } from '../redux/actions/dataActions';
-import TooltipButton from '../util/TooltipButton';
-import LikeButton from '../util/LikeButton';
+import TooltipButton from './TooltipButton';
+import LikeButton from './LikeButton';
 
 const { fbCollections } = require('../util/clientConstants');
 
