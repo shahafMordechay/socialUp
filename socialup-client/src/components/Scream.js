@@ -82,6 +82,7 @@ function Scream(screamInfo) {
         >
           {userHandle}
         </Typography>
+        {/* Add delete handle */}
         <Typography variant="body2" color="textSecondary">
           {dayjs(createdAt).fromNow()}
         </Typography>
