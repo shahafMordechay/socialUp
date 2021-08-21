@@ -17,7 +17,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
 import globalUseStyles from '../util/GlobalStyles';
 import { editUserDetails } from '../redux/actions/userActions';
-import TooltipButton from '../util/TooltipButton';
+import TooltipButton from '../components/TooltipButton';
 
 export default function EditDetails() {
   const classes = globalUseStyles();
@@ -65,7 +65,7 @@ export default function EditDetails() {
   });
 
   return (
-    <Fragment>
+    <>
       <TooltipButton
         tip="Edit details"
         placement="top"
@@ -73,7 +73,7 @@ export default function EditDetails() {
         onClick={handleOpen}
         style={buttonStyle}
       >
-        <EditIcon color="primary" style={buttonStyle} />
+        <EditIcon color="primary" />
       </TooltipButton>
       <Dialog open={isOpen} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Edit your details</DialogTitle>
@@ -155,6 +155,6 @@ export default function EditDetails() {
           </Button>
         </DialogActions>
       </Dialog>
-    </Fragment>
+    </>
   );
 }

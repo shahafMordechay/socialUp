@@ -13,7 +13,7 @@ import Notifications from '@material-ui/icons/Notifications';
 
 // Redux
 import { useSelector } from 'react-redux';
-import TooltipButton from '../util/TooltipButton';
+import TooltipButton from '../components/TooltipButton';
 
 export default function Navbar() {
   const authenticated = useSelector((state) => state.user.authenticated);

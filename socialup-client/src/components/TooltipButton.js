@@ -14,7 +14,7 @@ const TooltipButton = ({
 }) => (
   <Tooltip
     title={tip}
-    placement={placement}
+    placement={placement ? placement : 'top'}
     className={tipClassName}
     style={style}
   >

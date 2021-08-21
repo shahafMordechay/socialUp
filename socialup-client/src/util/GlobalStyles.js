@@ -12,7 +12,6 @@ const globalUseStyles = makeStyles({
     textAlign: 'center'
   },
   paper: {
-    height: '100%',
     padding: 20
   },
   image: {

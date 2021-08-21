@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 
 // MUI
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +22,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import globalUseStyles from '../util/GlobalStyles';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
 import EditDetails from './EditDetails';
-import TooltipButton from '../util/TooltipButton';
+import TooltipButton from '../components/TooltipButton';
 
 export default function Profile() {
   const classes = globalUseStyles();
@@ -63,7 +64,7 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
   };
 
   return (
-    <Paper className={classes.paper}>
+    <Card className={classes.paper}>
       <div className={classes.profile}>
         <div className="image-wrapper">
           <img src={imageUrl} alt="profile" className="profile-image" />
@@ -121,7 +122,7 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
         </TooltipButton>
         <EditDetails />
       </div>
-    </Paper>
+    </Card>
   );
 };
 

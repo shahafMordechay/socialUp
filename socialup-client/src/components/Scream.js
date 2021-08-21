@@ -17,11 +17,13 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { likeScream, unlikeScream } from '../redux/actions/dataActions';
 import TooltipButton from './TooltipButton';
 import LikeButton from './LikeButton';
+import DeleteScream from './DeleteScream';
 
 const { fbCollections } = require('../util/clientConstants');
 
 const styles = makeStyles({
   card: {
+    position: 'relative',
     display: 'flex',
     marginBottom: 20
   },
@@ -58,12 +60,18 @@ function Scream(screamInfo) {
   const isScreamLiked =
     user.likes && user.likes.find((like) => like.screamId === screamId);
 
-  const likeAScream = () => {
+  const handleLikeScream = () => {
     dispatch(likeScream(screamId));
   };
 
-  const unlikeAScream = () => {
+  const handleUnlikeScream = () => {
     dispatch(unlikeScream(screamId));
+  };
+
+  const renderScreamDelete = () => {
+    return userHandle === user.credentials.handle ? (
+      <DeleteScream screamId={screamId} />
+    ) : null;
   };
 
   return (
@@ -82,14 +90,15 @@ function Scream(screamInfo) {
         >
           {userHandle}
         </Typography>
-        {/* Add delete handle */}
+        <br />
+        {renderScreamDelete()}
         <Typography variant="body2" color="textSecondary">
           {dayjs(createdAt).fromNow()}
         </Typography>
         <Typography variant="body1">{body}</Typography>
         <LikeButton
-          onLike={likeAScream}
-          onUnlike={unlikeAScream}
+          onLike={handleLikeScream}
+          onUnlike={handleUnlikeScream}
           isLiked={isScreamLiked}
         />
         <span>{likeCount} likes</span>
