@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
-import EditIcon from '@material-ui/icons/Edit';
+import PhotoCameraTwoToneIcon from '@material-ui/icons/PhotoCameraTwoTone';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 // Redux
@@ -81,14 +81,14 @@ const authenticatedProfile = (classes, user, imageInput, dispatch) => {
             btnClassName="button"
             onClick={handleEditPicture}
           >
-            <EditIcon color="primary" />
+            <PhotoCameraTwoToneIcon color="primary" />
           </TooltipButton>
         </div>
         <hr />
         <div className="profile-details">
           <MuiLink
             component={Link}
-            to={`/users/${handle}`}
+            to={`/user/${handle}`}
             color="primary"
             variant="h6"
           >
@@ -158,9 +158,9 @@ const handleImageUpload = (event, dispatch) => {
   const image = event.target.files[0];
   const formData = new FormData();
   formData.append('image', image, image.name);
-  uploadImage(formData, dispatch);
+  dispatch(uploadImage(formData));
 };
 
 const handleUserLogout = (dispatch) => {
-  logoutUser(dispatch);
+  dispatch(logoutUser());
 };

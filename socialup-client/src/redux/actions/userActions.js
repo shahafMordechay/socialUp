@@ -11,13 +11,13 @@ import {
 const FB_ID_TOKEN = 'FBIdToken';
 const AUTH = 'Authorization';
 
-export const loginUser = (userData, history, dispatch) => {
+export const loginUser = (userData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
     .post('./login', userData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      getUserData(dispatch);
+      dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       history.push('/');
     })
@@ -29,19 +29,19 @@ export const loginUser = (userData, history, dispatch) => {
     });
 };
 
-export const logoutUser = (dispatch) => {
+export const logoutUser = () => (dispatch) => {
   localStorage.removeItem(FB_ID_TOKEN);
   delete axios.defaults.headers.common[AUTH];
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const signupUser = (newUserData, history, dispatch) => {
+export const signupUser = (newUserData, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
     .post('./signup', newUserData)
     .then((res) => {
       setAuthorizationHeader(res.data.token);
-      getUserData(dispatch);
+      dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       history.push('/');
     })
@@ -53,7 +53,7 @@ export const signupUser = (newUserData, history, dispatch) => {
     });
 };
 
-export const getUserData = (dispatch) => {
+export const getUserData = () => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios
     .get('/user')
@@ -66,22 +66,22 @@ export const getUserData = (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const uploadImage = (formData, dispatch) => {
+export const uploadImage = (formData) => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios
     .post('/user/image', formData)
     .then(() => {
-      getUserData(dispatch);
+      dispatch(getUserData());
     })
     .catch((err) => console.log(err));
 };
 
-export const editUserDetails = (userDetails, dispatch) => {
+export const editUserDetails = (userDetails) => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios
     .post('/user', userDetails)
     .then(() => {
-      getUserData(dispatch);
+      dispatch(getUserData());
     })
     .catch((err) => console.log(err));
 };

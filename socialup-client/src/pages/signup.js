@@ -44,7 +44,7 @@ function Signup(props) {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    signupUser(data, history, dispatch);
+    dispatch(signupUser(data, history));
   };
   return (
     <Container maxWidth="sm" className={classes.container}>

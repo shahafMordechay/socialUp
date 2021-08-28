@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Fragment } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 // MUI
@@ -52,7 +52,7 @@ export default function EditDetails() {
   };
 
   const onSubmit = (formData) => {
-    editUserDetails(formData, dispatch);
+    dispatch(editUserDetails(formData));
     handleClose();
   };
 

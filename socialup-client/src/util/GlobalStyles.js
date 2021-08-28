@@ -26,7 +26,19 @@ const globalUseStyles = makeStyles({
     margin: '30px auto 30px auto'
   },
   button: {
-    marginTop: '30px'
+    position: 'relative',
+    marginTop: '10%'
+  },
+  postButton: {
+    position: 'relative',
+    marginTop: '10%',
+    marginBottom: '1%',
+    left: '85%'
+  },
+  closeButton: {
+    position: 'absolute',
+    right: '2%',
+    top: '3%'
   },
   customError: {
     color: 'red',

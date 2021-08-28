@@ -37,7 +37,7 @@ function Login(props) {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    loginUser(data, history, dispatch);
+    dispatch(loginUser(data, history));
   };
   return (
     <Container maxWidth="sm" className={classes.container}>

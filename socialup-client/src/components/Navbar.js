@@ -7,13 +7,14 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
 // MUI Icons
-import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
 
 // Redux
 import { useSelector } from 'react-redux';
 import TooltipButton from '../components/TooltipButton';
+
+import PostScream from './PostScream.js';
 
 export default function Navbar() {
   const authenticated = useSelector((state) => state.user.authenticated);
@@ -32,9 +33,7 @@ export default function Navbar() {
 const authenticatedNavbar = () => {
   return (
     <>
-      <TooltipButton tip="Post a scream">
-        <AddIcon />
-      </TooltipButton>
+      <PostScream />
       <Link to="/">
         <TooltipButton tip="Home">
           <HomeIcon />
