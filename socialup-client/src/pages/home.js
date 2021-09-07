@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { useDispatch } from 'react-redux';
 import { getScreams } from '../redux/actions/dataActions';
 
-import Profile from '../components/Profile';
-import Screams from '../components/Screams';
+import Profile from '../components/profile/Profile';
+import Screams from '../components/scream/Scream';
 
 export default function Home() {
   const dispatch = useDispatch();

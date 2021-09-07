@@ -68,8 +68,8 @@ const globalUseStyles = makeStyles({
       }
     },
     '& .profile-image': {
-      width: 150,
-      height: 150,
+      width: 200,
+      height: 200,
       objectFit: 'cover',
       maxWidth: '100%',
       borderRadius: '50%'
@@ -98,6 +98,18 @@ const globalUseStyles = makeStyles({
     '& a': {
       margin: '20px 10px'
     }
+  },
+  dialogContent: {
+    padding: 20
+  },
+  expandButton: {
+    position: 'absolute',
+    right: '0.9%'
+  },
+  spinnerWrapper: {
+    textAlign: 'center',
+    marginTop: 50,
+    marginBottom: 50
   }
 });
 

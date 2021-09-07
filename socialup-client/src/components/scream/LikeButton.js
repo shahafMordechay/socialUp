@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-import TooltipButton from './TooltipButton';
+import TooltipButton from '../../util/TooltipButton';
 
 export default function LikeButton({ onLike, onUnlike, isLiked }) {
   const { authenticated } = useSelector((state) => state.user);

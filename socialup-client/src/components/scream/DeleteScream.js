@@ -16,8 +16,8 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 // Redux
 import { useDispatch } from 'react-redux';
 
-import { deleteScream } from '../redux/actions/dataActions';
-import TooltipButton from './TooltipButton';
+import { deleteScream } from '../../redux/actions/dataActions';
+import TooltipButton from '../../util/TooltipButton';
 
 const styles = makeStyles({
   deleteButton: {

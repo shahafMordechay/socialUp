@@ -15,10 +15,10 @@ import AddIcon from '@material-ui/icons/Add';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
+import { clearErrors, postScream } from '../../redux/actions/dataActions';
 
-import GlobalStyles from '../util/GlobalStyles';
-import TooltipButton from './TooltipButton';
-import { postScream } from '../redux/actions/dataActions';
+import GlobalStyles from '../../util/GlobalStyles';
+import TooltipButton from '../../util/TooltipButton';
 
 export default function PostScream() {
   const classes = GlobalStyles();
@@ -26,12 +26,11 @@ export default function PostScream() {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.UI);
+
   const {
-    UI: { loading },
-    user: {
-      credentials: { handle, imageUrl }
-    }
-  } = useSelector((state) => state);
+    credentials: { handle, imageUrl }
+  } = useSelector((state) => state.user);
 
   const {
     control,
@@ -60,6 +59,7 @@ export default function PostScream() {
   };
 
   const handleClose = () => {
+    dispatch(clearErrors());
     setIsOpen(false);
   };
 

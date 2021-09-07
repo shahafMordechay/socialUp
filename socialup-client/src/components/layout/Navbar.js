@@ -12,9 +12,9 @@ import Notifications from '@material-ui/icons/Notifications';
 
 // Redux
 import { useSelector } from 'react-redux';
-import TooltipButton from '../components/TooltipButton';
+import TooltipButton from '../../util/TooltipButton';
 
-import PostScream from './PostScream.js';
+import PostScream from '../scream/PostScream.js';
 
 export default function Navbar() {
   const authenticated = useSelector((state) => state.user.authenticated);

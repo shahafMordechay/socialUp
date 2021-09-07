@@ -14,12 +14,15 @@ import { makeStyles } from '@material-ui/core';
 // MUI Icons
 import ChatIcon from '@material-ui/icons/Chat';
 
-import { likeScream, unlikeScream } from '../redux/actions/dataActions';
-import TooltipButton from './TooltipButton';
+// Redux
+import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
+
+import TooltipButton from '../../util/TooltipButton';
 import LikeButton from './LikeButton';
 import DeleteScream from './DeleteScream';
+import ScreamDialog from './ScreamDialog';
 
-const { fbCollections } = require('../util/clientConstants');
+const { fbCollections } = require('../../util/clientConstants');
 
 const styles = makeStyles({
   card: {
@@ -106,6 +109,7 @@ function Scream(screamInfo) {
           <ChatIcon color="primary" />
         </TooltipButton>
         <span>{commentCount} comments</span>
+        <ScreamDialog screamId={screamId} userHandle={userHandle} />
       </CardContent>
     </Card>
   );

@@ -19,10 +19,10 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 // Redux
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
-import globalUseStyles from '../util/GlobalStyles';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import globalUseStyles from '../../util/GlobalStyles';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import EditDetails from './EditDetails';
-import TooltipButton from '../components/TooltipButton';
+import TooltipButton from '../../util/TooltipButton';
 
 export default function Profile() {
   const classes = globalUseStyles();
