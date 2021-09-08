@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 const globalUseStyles = makeStyles({
+  root: {},
   typography: {
     useNextVariant: true
   },
@@ -19,6 +20,15 @@ const globalUseStyles = makeStyles({
     width: 128,
     height: 128
   },
+  commentImage: {
+    maxWidth: '100%',
+    height: 100,
+    objectFit: 'cover',
+    borderRadius: '50%'
+  },
+  commentData: {
+    marginLeft: 20
+  },
   pageTitle: {
     margin: 'auto auto 10px auto'
   },
@@ -31,9 +41,9 @@ const globalUseStyles = makeStyles({
   },
   postButton: {
     position: 'relative',
-    marginTop: '10%',
+    marginTop: '5%',
     marginBottom: '1%',
-    left: '85%'
+    left: '40%'
   },
   closeButton: {
     position: 'absolute',

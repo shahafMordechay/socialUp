@@ -20,6 +20,7 @@ import AuthRoute from './util/AuthRoute';
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
+import User from './pages/user';
 
 // style
 import defaultTheme from './util/theme';
@@ -51,6 +52,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
+              <Route exact path="/user/:handle" component={User} />
             </Switch>
           </div>
         </Router>

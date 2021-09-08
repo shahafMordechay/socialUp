@@ -6,9 +6,13 @@ import Scream from './Scream';
 export default function Screams() {
   const { screams, loading } = useSelector((state) => state.data);
 
-  return !loading ? (
-    screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
-  ) : (
+  return loading ? (
     <p>Loading...</p>
+  ) : screams === null ? (
+    <p>no screams</p>
+  ) : (
+    screams.map((scream) => (
+      <Scream key={scream.screamId} screamInfo={scream} />
+    ))
   );
 }

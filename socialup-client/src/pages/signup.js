@@ -43,7 +43,8 @@ function Signup(props) {
 
   const history = useHistory();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, event) => {
+    event.preventDefault();
     dispatch(signupUser(data, history));
   };
   return (

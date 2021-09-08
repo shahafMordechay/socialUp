@@ -51,8 +51,9 @@ export default function EditDetails() {
     submitButton.current && submitButton.current.click();
   };
 
-  const onSubmit = (formData) => {
-    dispatch(editUserDetails(formData));
+  const onSubmit = (data, event) => {
+    event.preventDefault();
+    dispatch(editUserDetails(data));
     handleClose();
   };
 

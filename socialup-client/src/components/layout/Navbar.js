@@ -12,8 +12,8 @@ import Notifications from '@material-ui/icons/Notifications';
 
 // Redux
 import { useSelector } from 'react-redux';
-import TooltipButton from '../../util/TooltipButton';
 
+import TooltipButton from '../../util/TooltipButton';
 import PostScream from '../scream/PostScream.js';
 
 export default function Navbar() {

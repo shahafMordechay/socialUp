@@ -25,6 +25,8 @@ import {
 import TooltipButton from '../../util/TooltipButton';
 import LikeButton from './LikeButton';
 import globalUseStyles from '../../util/GlobalStyles';
+import Comments from './Comments';
+import CommentForm from './CommentForm';
 
 export default function ScreamDialog({ screamId, userHandle }) {
   const classes = globalUseStyles();
@@ -34,9 +36,8 @@ export default function ScreamDialog({ screamId, userHandle }) {
   const dispatch = useDispatch();
   const UI = useSelector((state) => state.UI);
   const user = useSelector((state) => state.user);
-  const { body, createdAt, likeCount, commentCount, userImage } = useSelector(
-    (state) => state.data.scream
-  );
+  const { body, createdAt, likeCount, commentCount, userImage, comments } =
+    useSelector((state) => state.data.scream);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -99,6 +100,9 @@ export default function ScreamDialog({ screamId, userHandle }) {
             </TooltipButton>
             <span>{commentCount} comments</span>
           </Grid>
+          <hr className={classes.invisibleSeparator} />
+          <CommentForm screamId={screamId} />
+          <Comments comments={comments} />
         </Grid>
       </>
     );

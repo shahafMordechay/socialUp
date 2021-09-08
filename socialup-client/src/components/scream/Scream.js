@@ -22,8 +22,6 @@ import LikeButton from './LikeButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
 
-const { fbCollections } = require('../../util/clientConstants');
-
 const styles = makeStyles({
   card: {
     position: 'relative',
@@ -40,22 +38,20 @@ const styles = makeStyles({
   }
 });
 
-function Scream(screamInfo) {
+function Scream({ screamInfo }) {
   const classes = styles();
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   const {
-    scream: {
-      body,
-      createdAt,
-      userImage,
-      userHandle,
-      screamId,
-      likeCount,
-      commentCount
-    }
+    body,
+    createdAt,
+    userImage,
+    userHandle,
+    screamId,
+    likeCount,
+    commentCount
   } = screamInfo;
 
   dayjs.extend(relativeTime);
@@ -88,7 +84,7 @@ function Scream(screamInfo) {
         <Typography
           variant="h5"
           component={Link}
-          to={`${fbCollections.USERS}/${userHandle}`}
+          to={`user/${userHandle}`}
           color="primary"
         >
           {userHandle}

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getScreams } from '../redux/actions/dataActions';
 
 import Profile from '../components/profile/Profile';
-import Screams from '../components/scream/Scream';
+import Screams from '../components/scream/Screams';
 
 export default function Home() {
   const dispatch = useDispatch();
