@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect, useCallback } from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
@@ -28,10 +28,12 @@ import globalUseStyles from '../../util/GlobalStyles';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
 
-export default function ScreamDialog({ screamId, userHandle }) {
+export default function ScreamDialog({ screamId, userHandle, openDialog }) {
   const classes = globalUseStyles();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [oldPath, setOldPath] = useState('');
+  const [newPath, setNewPath] = useState('');
 
   const dispatch = useDispatch();
   const UI = useSelector((state) => state.UI);
@@ -39,14 +41,27 @@ export default function ScreamDialog({ screamId, userHandle }) {
   const { body, createdAt, likeCount, commentCount, userImage, comments } =
     useSelector((state) => state.data.scream);
 
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
+    const currentOldPath = window.location.pathname;
+    const currentNewPath = `/user/${userHandle}/scream/${screamId}`;
+    window.history.pushState(null, null, currentNewPath);
+
+    if (currentOldPath === newPath) setOldPath(`/user/${userHandle}`);
+    else setOldPath(currentOldPath);
+
+    setNewPath(currentNewPath);
     setIsOpen(true);
     dispatch(getScream(screamId));
-  };
+  }, [userHandle, screamId, newPath, dispatch]);
 
   const handleClose = () => {
+    window.history.pushState(null, null, oldPath);
     setIsOpen(false);
   };
+
+  useLayoutEffect(() => {
+    if (openDialog) handleOpen();
+  }, [handleOpen, openDialog]);
 
   const isScreamLiked =
     user.likes && user.likes.find((like) => like.screamId === screamId);
@@ -58,6 +73,7 @@ export default function ScreamDialog({ screamId, userHandle }) {
   const handleUnlikeScream = () => {
     dispatch(unlikeScream(screamId));
   };
+
   const renderDialogMarkup = () => {
     return (
       <>
@@ -68,7 +84,7 @@ export default function ScreamDialog({ screamId, userHandle }) {
         >
           <CloseIcon />
         </TooltipButton>
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
           <Grid item sm={5}>
             <div className={classes.profile}>
               <img src={userImage} alt="Profile" className="profile-image" />

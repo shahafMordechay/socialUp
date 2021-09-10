@@ -12,17 +12,12 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 
-// Redux
-import { useSelector } from 'react-redux';
-
 import globalUseStyles from '../../util/GlobalStyles';
 
-export default function StaticProfile() {
+export default function StaticProfile({ profile }) {
   const classes = globalUseStyles();
 
-  const {
-    credentials: { handle, createdAt, imageUrl, bio, website, location }
-  } = useSelector((state) => state.user);
+  const { handle, createdAt, imageUrl, bio, website, location } = profile;
 
   return (
     <Card className={classes.paper}>

@@ -42,7 +42,6 @@ export default function dataReducer(state = initialState, action) {
       );
 
       state.screams[index] = action.payload;
-      state.scream = state.screams[index];
 
       return {
         ...state

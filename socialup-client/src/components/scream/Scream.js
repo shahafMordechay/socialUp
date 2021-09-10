@@ -38,7 +38,7 @@ const styles = makeStyles({
   }
 });
 
-function Scream({ screamInfo }) {
+function Scream({ screamInfo, dialogOpen }) {
   const classes = styles();
 
   const dispatch = useDispatch();
@@ -105,7 +105,11 @@ function Scream({ screamInfo }) {
           <ChatIcon color="primary" />
         </TooltipButton>
         <span>{commentCount} comments</span>
-        <ScreamDialog screamId={screamId} userHandle={userHandle} />
+        <ScreamDialog
+          screamId={screamId}
+          userHandle={userHandle}
+          openDialog={dialogOpen}
+        />
       </CardContent>
     </Card>
   );
