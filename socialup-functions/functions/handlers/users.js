@@ -189,7 +189,7 @@ exports.getAuthenticatedUser = (req, res) => {
         .get();
     })
     .then((data) => {
-      userData.notifications = {};
+      userData.notifications = [];
       data.forEach((doc) => {
         let notificationData = {};
         Object.assign(notificationData, doc.data());

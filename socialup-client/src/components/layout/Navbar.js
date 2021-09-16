@@ -1,20 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // MUI
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
 
 // MUI Icons
 import HomeIcon from '@material-ui/icons/Home';
-import Notifications from '@material-ui/icons/Notifications';
 
 // Redux
 import { useSelector } from 'react-redux';
 
 import TooltipButton from '../../util/TooltipButton';
-import PostScream from '../scream/PostScream.js';
+import PostScream from '../scream/PostScream';
+import Notifications from './Notifications';
 
 export default function Navbar() {
   const authenticated = useSelector((state) => state.user.authenticated);
@@ -39,9 +39,7 @@ const authenticatedNavbar = () => {
           <HomeIcon />
         </TooltipButton>
       </Link>
-      <TooltipButton tip="Notifications">
-        <Notifications />
-      </TooltipButton>
+      <Notifications />
     </>
   );
 };
