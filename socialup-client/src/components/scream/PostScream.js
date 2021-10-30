@@ -13,9 +13,9 @@ import AddIcon from '@material-ui/icons/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, postScream } from '../../redux/actions/dataActions';
 
-import GlobalStyles from '../../util/GlobalStyles';
-import TooltipButton from '../../util/TooltipButton';
-import SingleTextForm from '../../util/SingleTextForm';
+import GlobalStyles from '../../util/styles/GlobalStyles';
+import TooltipButton from '../../util/components/TooltipButton';
+import SingleTextForm from '../../util/components/SingleTextForm';
 
 export default function PostScream() {
   const classes = GlobalStyles();

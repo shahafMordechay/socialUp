@@ -13,7 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 
-import globalUseStyles from '../util/GlobalStyles';
+import globalUseStyles from '../util/styles/GlobalStyles';
 import AppIcon from '../images/clogo_only_trans.png';
 import { loginUser } from '../redux/actions/userActions';
 

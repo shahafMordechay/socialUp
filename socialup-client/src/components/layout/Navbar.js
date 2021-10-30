@@ -12,18 +12,23 @@ import HomeIcon from '@material-ui/icons/Home';
 // Redux
 import { useSelector } from 'react-redux';
 
-import TooltipButton from '../../util/TooltipButton';
+import TooltipButton from '../../util/components/TooltipButton';
 import PostScream from '../scream/PostScream';
 import Notifications from './Notifications';
 
 export default function Navbar() {
-  const authenticated = useSelector((state) => state.user.authenticated);
-
+  const { authenticated, loading } = useSelector((state) => state.user);
   return (
     <div>
       <AppBar>
         <Toolbar className="nav-container">
-          {authenticated ? authenticatedNavbar() : notAuthenticatedNavbar()}
+          {loading ? (
+            <></>
+          ) : authenticated ? (
+            authenticatedNavbar()
+          ) : (
+            notAuthenticatedNavbar()
+          )}
         </Toolbar>
       </AppBar>
     </div>

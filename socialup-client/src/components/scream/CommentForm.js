@@ -8,8 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { submitComment } from '../../redux/actions/dataActions';
 
-import globalUseStyles from '../../util/GlobalStyles';
-import SingleTextForm from '../../util/SingleTextForm';
+import globalUseStyles from '../../util/styles/GlobalStyles';
+import SingleTextForm from '../../util/components/SingleTextForm';
 
 export default function CommentForm({ screamId }) {
   const classes = globalUseStyles();

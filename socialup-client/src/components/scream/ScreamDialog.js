@@ -22,9 +22,9 @@ import {
   unlikeScream
 } from '../../redux/actions/dataActions';
 
-import TooltipButton from '../../util/TooltipButton';
+import TooltipButton from '../../util/components/TooltipButton';
 import LikeButton from './LikeButton';
-import globalUseStyles from '../../util/GlobalStyles';
+import globalUseStyles from '../../util/styles/GlobalStyles';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
 

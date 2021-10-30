@@ -14,7 +14,7 @@ import { logoutUser, getUserData } from './redux/actions/userActions';
 
 // Components
 import Navbar from './components/layout/Navbar';
-import AuthRoute from './util/AuthRoute';
+import AuthRoute from './util/components/AuthRoute';
 
 // Pages
 import Home from './pages/home';
@@ -23,7 +23,7 @@ import Signup from './pages/signup';
 import User from './pages/user';
 
 // style
-import defaultTheme from './util/theme';
+import defaultTheme from './util/styles/theme';
 import axios from 'axios';
 
 const theme = createMuiTheme(defaultTheme);

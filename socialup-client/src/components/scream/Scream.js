@@ -17,7 +17,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 // Redux
 import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
 
-import TooltipButton from '../../util/TooltipButton';
+import TooltipButton from '../../util/components/TooltipButton';
 import LikeButton from './LikeButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';

@@ -15,9 +15,9 @@ import EditIcon from '@material-ui/icons/Edit';
 // Redux
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
-import globalUseStyles from '../../util/GlobalStyles';
+import globalUseStyles from '../../util/styles/GlobalStyles';
 import { editUserDetails } from '../../redux/actions/userActions';
-import TooltipButton from '../../util/TooltipButton';
+import TooltipButton from '../../util/components/TooltipButton';
 
 export default function EditDetails() {
   const classes = globalUseStyles();

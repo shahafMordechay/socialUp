@@ -19,10 +19,11 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 // Redux
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
-import globalUseStyles from '../../util/GlobalStyles';
+import globalUseStyles from '../../util/styles/GlobalStyles';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import EditDetails from './EditDetails';
-import TooltipButton from '../../util/TooltipButton';
+import TooltipButton from '../../util/components/TooltipButton';
+import ProfileSkeleton from '../../util/components/ProfileSkeleton';
 
 export default function Profile() {
   const classes = globalUseStyles();
@@ -40,7 +41,7 @@ export default function Profile() {
       noProfile(classes)
     )
   ) : (
-    <p>loading...</p>
+    <ProfileSkeleton />
   );
 
   return ProfileMarkup;

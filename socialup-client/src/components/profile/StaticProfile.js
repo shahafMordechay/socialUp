@@ -12,7 +12,7 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 
-import globalUseStyles from '../../util/GlobalStyles';
+import globalUseStyles from '../../util/styles/GlobalStyles';
 
 export default function StaticProfile({ profile }) {
   const classes = globalUseStyles();
