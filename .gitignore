@@ -2,3 +2,11 @@ socialup-client/public/clogo_bg.png
 socialup-client/public/dlogo_trans.png
 socialup-client/public/robots.txt
 socialup-client/public/wlogo_trans.png
+socialup-functions/package-lock.json
+.github/workflows/firebase-hosting-pull-request.yml
+.vscode/settings.json
+socialup-client/.firebaserc
+socialup-client/firebase.json
+socialup-client/package-lock.json
+socialup-client/package.json
+socialup-client/.firebase/hosting.YnVpbGQ.cache
