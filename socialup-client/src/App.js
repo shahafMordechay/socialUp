@@ -12,6 +12,11 @@ import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actions/userActions';
 
+// Firebase
+import firebase from './firebase/firebase';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { createFirestoreInstance } from 'redux-firestore';
+
 // Components
 import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/components/AuthRoute';
@@ -28,6 +33,9 @@ import axios from 'axios';
 
 const theme = createMuiTheme(defaultTheme);
 
+axios.defaults.baseURL =
+  'https://us-central1-socialape-mor.cloudfunctions.net/api';
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
@@ -41,26 +49,37 @@ if (token) {
   }
 }
 
+const rrfProps = {
+  firebase,
+  config: {
+    userProfile: 'users'
+  },
+  dispatch: store.dispatch,
+  createFirestoreInstance
+};
+
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
-        <Router>
-          <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <AuthRoute exact path="/login" component={Login} />
-              <AuthRoute exact path="/signup" component={Signup} />
-              <Route exact path="/user/:handle" component={User} />
-              <Route
-                exact
-                path="/user/:handle/scream/:screamId"
-                component={User}
-              />
-            </Switch>
-          </div>
-        </Router>
+        <ReactReduxFirebaseProvider {...rrfProps}>
+          <Router>
+            <Navbar />
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <AuthRoute exact path="/login" component={Login} />
+                <AuthRoute exact path="/signup" component={Signup} />
+                <Route exact path="/user/:handle" component={User} />
+                <Route
+                  exact
+                  path="/user/:handle/scream/:screamId"
+                  component={User}
+                />
+              </Switch>
+            </div>
+          </Router>
+        </ReactReduxFirebaseProvider>
       </Provider>
     </MuiThemeProvider>
   );

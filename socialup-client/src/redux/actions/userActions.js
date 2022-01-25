@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   SET_USER,
   SET_ERRORS,
@@ -6,7 +7,8 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  MARK_NOTIFICATIONS_READ
+  MARK_NOTIFICATIONS_READ,
+  SET_NOTIFICATIONS
 } from '../types';
 
 const FB_ID_TOKEN = 'FBIdToken';
@@ -86,6 +88,37 @@ export const editUserDetails = (userDetails) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const addNotificationListener =
+  ({ firestore }, userHandle) =>
+  (dispatch) => {
+    const unsubscribe = firestore.onSnapshot(
+      {
+        collection: 'notifications',
+        where: [
+          ['recipient', '==', userHandle],
+          ['read', '==', false]
+        ],
+        orderBy: ['createdAt', 'desc'],
+        limit: 10
+      },
+      (querySnapshot) => {
+        let nots = [];
+
+        querySnapshot.docs.forEach((doc) => {
+          let notificationData = {};
+
+          Object.assign(notificationData, doc.data());
+          notificationData.notificationId = doc.id;
+          nots.push(notificationData);
+        });
+
+        dispatch({ type: SET_NOTIFICATIONS, payload: nots });
+      }
+    );
+
+    return unsubscribe;
+  };
 
 export const markNotificationsRead = (notificationIds) => (dispatch) => {
   axios

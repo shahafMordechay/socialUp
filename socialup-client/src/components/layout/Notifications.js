@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Link } from 'react-router-dom';
@@ -19,13 +19,32 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { useDispatch, useSelector } from 'react-redux';
 import Badge from '@material-ui/core/Badge';
 
-import { markNotificationsRead } from '../../redux/actions/userActions';
+// Firestore
+import { useFirestoreConnect, useFirestore } from 'react-redux-firebase';
+
+import {
+  markNotificationsRead,
+  addNotificationListener
+} from '../../redux/actions/userActions';
 
 export default function Notifications() {
   const [anchorEl, setAnchorEl] = useState(null);
 
+  const firestore = useFirestore();
+  useFirestoreConnect('notifications');
+
   const dispatch = useDispatch();
   const notifications = useSelector((state) => state.user.notifications);
+  const { handle } = useSelector((state) => state.user.credentials);
+
+  useEffect(() => {
+    const unsubscribe = dispatch(
+      addNotificationListener({ firestore }, handle)
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, [firestore, handle, dispatch]);
 
   dayjs.extend(relativeTime);
 
@@ -74,7 +93,7 @@ export default function Notifications() {
           );
 
         return (
-          <MenuItem key={not.createdAt} onClick={handleClose}>
+          <MenuItem key={not.notificationId} onClick={handleClose}>
             {icon}
             <Typography
               component={Link}

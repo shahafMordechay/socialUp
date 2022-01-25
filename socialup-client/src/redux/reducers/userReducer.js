@@ -5,7 +5,8 @@ import {
   LOADING_USER,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
-  MARK_NOTIFICATIONS_READ
+  MARK_NOTIFICATIONS_READ,
+  SET_NOTIFICATIONS
 } from '../types';
 
 const initialState = {
@@ -56,6 +57,19 @@ export default function userReducer(state = initialState, action) {
       };
     case MARK_NOTIFICATIONS_READ:
       state.notifications.forEach((not) => (not.read = true));
+      return {
+        ...state
+      };
+    case SET_NOTIFICATIONS:
+      action.payload.forEach((item) => {
+        if (
+          !state.notifications.some(
+            (not) => not.notificationId === item.notificationId
+          )
+        ) {
+          state.notifications.push(item);
+        }
+      });
       return {
         ...state
       };
