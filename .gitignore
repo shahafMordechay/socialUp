@@ -10,3 +10,9 @@ socialup-client/firebase.json
 socialup-client/package-lock.json
 socialup-client/package.json
 socialup-client/.firebase/hosting.YnVpbGQ.cache
+socialup-client/public/clogo_trans.png
+socialup-client/src/images/blank-profile-picture.png
+socialup-client/src/images/clogo_bg.png
+socialup-client/src/images/clogo_trans.png
+socialup-client/src/images/dlogo_trans.png
+socialup-client/src/images/wlogo_trans.png
