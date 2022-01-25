@@ -16,3 +16,8 @@ socialup-client/src/images/clogo_bg.png
 socialup-client/src/images/clogo_trans.png
 socialup-client/src/images/dlogo_trans.png
 socialup-client/src/images/wlogo_trans.png
+socialup-functions/.firebaserc
+socialup-functions/firebase.json
+socialup-functions/socialape-mor-6777832e8bab.json
+socialup-functions/functions/package-lock.json
+socialup-functions/functions/package.json
