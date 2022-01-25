@@ -21,3 +21,6 @@ socialup-functions/firebase.json
 socialup-functions/socialape-mor-6777832e8bab.json
 socialup-functions/functions/package-lock.json
 socialup-functions/functions/package.json
+socialup-client/src/App.test.js
+socialup-client/src/reportWebVitals.js
+socialup-client/src/setupTests.js
